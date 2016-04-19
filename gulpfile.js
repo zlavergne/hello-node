@@ -1,25 +1,11 @@
 var gulp = require('gulp');
 
-function loadEnv() {
-  try {
-    if (require('fs').statSync('.env').isFile()) {
-      require('gulp-env')({file: '.env', type: '.ini'});
-    }
-  }
-  catch (e) {
-    // ignored
-  }
-}
-
-
 // Start a server with livereload support
 gulp.task('server', function() {
-  loadEnv();
-
   var livereload = require('gulp-livereload');
   livereload.listen();
 
-  require('gulp-nodemon')({script: 'app.js', stdout: false, watch: ['.env', '*.*']})
+  require('gulp-nodemon')({script: 'app.js', stdout: false, watch: ['app.js']})
     .on('readable', function() {
       // this waits until the actual server is up
       this.stdout.on('data', function(chunk) {
@@ -28,9 +14,6 @@ gulp.task('server', function() {
         }
         process.stdout.write(chunk);
       });
-    })
-    .on('restart', function () {
-      loadEnv();
     });
 });
 
