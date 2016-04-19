@@ -1,0 +1,7 @@
+{
+  "name": "Hello Node",
+  "description": "Hello Node",
+  "repository": "https://github.com/jamesward/hello-node",
+  "website": "http://www.jamesward.com",
+  "keywords": ["node"]
+}
